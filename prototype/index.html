@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>TaxIt — Pakistan Tax Guidance</title>
+<meta name="description" content="Understand Pakistani taxation and prepare your filing documents." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script>
+  // Resolve the theme before first paint so there is no flash.
+  // Stored value wins; otherwise follow the OS. A concrete data-theme is
+  // always written, so the CSS needs only one [data-theme="dark"] block.
+  (function () {
+    try {
+      var stored = localStorage.getItem('taxit-theme');
+      var dark = stored ? stored === 'dark'
+                        : matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    } catch (e) { document.documentElement.dataset.theme = 'light'; }
+  })();
+</script>
+<link rel="stylesheet" href="./css/tokens.css" />
+<link rel="stylesheet" href="./css/base.css" />
+<link rel="stylesheet" href="./css/components.css" />
+<link rel="stylesheet" href="./css/screens.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="appbar" id="appbar">
+    <div class="appbar__inner">
+      <a class="brand" href="#/" aria-label="TaxIt home">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M16 3 27 8v8.4c0 6.4-4.4 10.6-11 12.6-6.6-2-11-6.2-11-12.6V8z" fill="currentColor" opacity=".14"/><path d="M16 3 27 8v8.4c0 6.4-4.4 10.6-11 12.6-6.6-2-11-6.2-11-12.6V8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M11.5 12.2h9M16 12.2V21" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+        </span>
+        <span class="brand__word">Tax<span>It</span></span>
+      </a>
+
+      <nav class="mainnav" id="mainnav" aria-label="Primary">
+        <a href="#/learn" data-nav="learn">Learn</a>
+        <a href="#/file" data-nav="file">Fill My Documents</a>
+        <a href="#/library" data-nav="library">Document Library</a>
+        <a href="#/support" data-nav="support">Support</a>
+      </nav>
+
+      <div class="appbar__right">
+        <button class="iconbtn" id="themeBtn" aria-label="Switch to dark theme" title="Switch to dark theme" aria-pressed="false"></button>
+        <button class="iconbtn" id="navSupport" aria-label="Open support" title="Support"></button>
+        <button class="avatar" id="avatarBtn" aria-label="Account: Ayesha Raza">AR</button>
+        <button class="iconbtn iconbtn--menu" id="menuBtn" aria-label="Open menu" aria-expanded="false"></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1"></main>
+
+  <footer class="sitefoot">
+    <div class="sitefoot__inner">
+      <p class="sitefoot__note">Prototype build. Rates and deadlines shown are illustrative — always confirm against FBR before filing.</p>
+      <p class="sitefoot__meta">TaxIt · Tax Year 2026</p>
+    </div>
+  </footer>
+
+  <button class="fab" id="fab" aria-label="Ask the AI Guide">
+    <span class="fab__icon"></span>
+    <span class="fab__label">Ask the AI Guide</span>
+  </button>
+
+  <div class="scrim" id="scrim" hidden></div>
+
+  <!-- AI Guide drawer -->
+  <aside class="drawer" id="aiDrawer" role="dialog" aria-modal="true" aria-labelledby="aiDrawerTitle" hidden>
+    <header class="drawer__head">
+      <div class="drawer__id">
+        <span class="drawer__avatar" aria-hidden="true"></span>
+        <div>
+          <h2 id="aiDrawerTitle">Rehnuma</h2>
+          <p><span class="dot"></span>AI Guide · cites FBR sections</p>
+        </div>
+      </div>
+      <button class="iconbtn" id="aiClose" aria-label="Close AI Guide"></button>
+    </header>
+    <div class="drawer__thread" id="aiThread" aria-live="polite"></div>
+    <div class="drawer__chips" id="aiChips"></div>
+    <form class="composer" id="aiForm">
+      <input id="aiInput" class="composer__input" placeholder="Ask about a rate, a section, a deadline…" autocomplete="off" aria-label="Message the AI Guide" />
+      <button class="composer__send" type="submit" aria-label="Send message"></button>
+    </form>
+  </aside>
+
+  <!-- Support panel -->
+  <aside class="supportpanel" id="supportPanel" role="dialog" aria-modal="true" aria-labelledby="supportTitle" hidden>
+    <header class="supportpanel__head">
+      <div>
+        <h2 id="supportTitle">Support</h2>
+        <p>Answers in seconds · Mon–Sat, 9am–9pm PKT</p>
+      </div>
+      <button class="iconbtn iconbtn--onaccent" id="supportClose" aria-label="Close support"></button>
+    </header>
+    <div class="supportpanel__body" id="supportBody"></div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
